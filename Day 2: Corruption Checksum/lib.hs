@@ -1,19 +1,33 @@
 import Data.List.Split
+import Data.List
 
-localChecksumInts :: [Int] -> Int
-localChecksumInts [] = 0
-localChecksumInts x = maximum x - minimum x
+minmaxSum :: [Int] -> Int
+minmaxSum [] = 0
+minmaxSum x = maximum x - minimum x
 
-localChecksumStrings :: [String] -> Int
-localChecksumStrings x = localChecksumInts (map (read::String->Int) x)
+checkEvenDiff :: Int -> [Int] -> Int
+checkEvenDiff n [] = 0
+checkEvenDiff n (x:xs) = if (n `mod` x) == 0 then n `div` x else checkEvenDiff n xs
 
-localChecksumString :: String -> Int
-localChecksumString x = localChecksumStrings (splitOn "\t" x)
+evenDiv :: [Int] -> Int
+evenDiv [] = 0
+evenDiv [x] = 0
+evenDiv (a:b:xs) = if x /= 0 then x else evenDiv (b:xs)
+                        where x = checkEvenDiff a (b:xs)
 
-checkSum :: l[String] -> Int
-checkSum [] = 0
-checkSum [x] = localChecksumString x
-checkSum (x:xs) = localChecksumString x + checkSum xs
+sortAndDiv :: [Int] -> Int
+sortAndDiv x = evenDiv (reverse(sort x))
+
+localChecksumStrings :: ([Int] -> Int) -> [String] -> Int
+localChecksumStrings f x = f (map (read::String->Int) x)
+
+localChecksumString :: ([Int] -> Int) -> String -> Int
+localChecksumString f x = localChecksumStrings f (splitOn "\t" x)
+
+checkSum :: ([Int] -> Int) -> [String] -> Int
+checkSum f [] = 0
+checkSum f [x] = localChecksumString f x
+checkSum f (x:xs) = localChecksumString  f x + checkSum f xs
 
 
 
