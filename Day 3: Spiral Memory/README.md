@@ -11,3 +11,11 @@ Each square on the grid is allocated in a spiral pattern starting at a location 
 How many steps are required to carry the data from the square identified in your puzzle input all the way to the access port?
 
 Input: 265149
+
+--- Part two ---
+
+As a stress test on the system, the programs here clear the grid and then store the value 1 in square 1. Then, in the same allocation order as shown above, they store the sum of the values in all adjacent squares, including diagonals.
+
+What is the first value written that is larger than your puzzle input?
+
+Your puzzle input is still 265149.
